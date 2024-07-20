@@ -1,4 +1,5 @@
 ﻿@page "/category"
+
 <h3>Category List</h3>
 
 @if (Categories == null)
@@ -7,6 +8,11 @@
 }
 else
 {
+    <div class="alert alert-info alert-dismissible fade show" role="alert" id="infoAlert">
+        <strong>Information:</strong> Categories have been loaded successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <ul class="list-group">
         @foreach (var category in Categories)
         {
@@ -22,3 +28,15 @@ else
         <a href="/category/new" class="btn btn-primary">New Category</a>
     </div>
 }
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            var alertElement = document.getElementById('infoAlert');
+            if (alertElement) {
+                var alert = new bootstrap.Alert(alertElement);
+                alert.close();
+            }
+        }, 5000);
+    });
+</script>

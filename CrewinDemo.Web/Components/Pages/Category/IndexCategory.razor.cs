@@ -11,12 +11,14 @@ public partial class IndexCategory
     public ApiClient ApiClient { get; set; }
     public List<CrewinDemo.Models.Entities.Category> Categories { get; set; }
 
+    public BaseResponseModel BaseResponseModel { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        var res = await ApiClient.GetFromJsonAsync<BaseResponseModel>("/api/Category");
-        if(res != null && res.Success)
+        BaseResponseModel = await ApiClient.GetFromJsonAsync<BaseResponseModel>("/api/Category");
+        if(BaseResponseModel != null && BaseResponseModel.Success)
         {
-            Categories = JsonConvert.DeserializeObject<List<CrewinDemo.Models.Entities.Category>>(res.Data.ToString());
+            Categories = JsonConvert.DeserializeObject<List<CrewinDemo.Models.Entities.Category>>(BaseResponseModel.Data.ToString());
         }
         await base.OnInitializedAsync();
     }
