@@ -1,0 +1,24 @@
+﻿@page "/category"
+<h3>Category List</h3>
+
+@if (Categories == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var category in Categories)
+        {
+            <li class="list-group-item">
+                <a href=@($"product/{category.Slug}") class="stretched-link">
+                    @category.Name
+                </a>
+            </li>
+        }
+    </ul>
+
+    <div class="text-end mt-3 mb-3">
+        <a href="/category/new" class="btn btn-primary">New Category</a>
+    </div>
+}
