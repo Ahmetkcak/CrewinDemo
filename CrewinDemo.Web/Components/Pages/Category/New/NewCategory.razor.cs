@@ -5,13 +5,13 @@ namespace CrewinDemo.Web.Components.Pages.Category.New;
 
 public partial class NewCategory
 {
+
     [Inject]
     public ApiClient ApiClient { get; set; }
-    private CrewinDemo.Models.Entities.Category category = new CrewinDemo.Models.Entities.Category();
 
-    private async Task HandleSubmit()
+    CrewinDemo.Models.Entities.Category newCategory = new CrewinDemo.Models.Entities.Category();
+    private async Task CreateNewCategoryy()
     {
-        string name = category.Name;
-        await ApiClient.PostAsJsonAsync<CrewinDemo.Models.Entities.Category>("/api/Category", category);
+        await ApiClient.PostAsJsonAsync<CrewinDemo.Models.Entities.Category>("/api/Category", newCategory);
     }
 }
